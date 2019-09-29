@@ -1,0 +1,12 @@
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.deps.json
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csprojAssemblyReference.cache
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csproj.CoreCompileInputs.cache
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.AssemblyInfoInputs.cache
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.AssemblyInfo.cs
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.dll
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csproj.CopyComplete
