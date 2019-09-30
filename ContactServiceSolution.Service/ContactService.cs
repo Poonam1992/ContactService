@@ -101,9 +101,35 @@ namespace ContactServiceSolution.Service
             }
         }
 
-        public Task<ContactModel> GetContactById(string Id)
+        public async  Task<ContactModel> UpdateContactStatus(ContactPatchStatusDTO contactStatus)
         {
-            throw new NotImplementedException();
+            using (var transaction = _contactRepository.BeginRepositoryTransaction())
+            {
+                try
+                {
+                    if (contactStatus.Id <= 0)
+                        throw new ContactNotFoundException(ErrorMessageConstant._contactNotFoundMsg);
+
+                    var contactDetails = await _contactRepository.FirstOrDefaultAsync(x => x.Id == contactStatus.Id, true);
+
+                    if (contactDetails == null)
+                        throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contactStatus.Id));
+
+                    contactDetails.Status = contactStatus.Status;
+                    
+                    var contactAddResult = _contactRepository.Update(contactDetails);
+                    await _contactRepository.SaveChanges();
+
+                    _contactRepository.CommitTransaction(transaction);
+                    return _mapper.Map<Contact, ContactModel>(contactAddResult);
+
+                }
+                catch (Exception ex)
+                {
+                    _contactRepository.RollbackTransaction(transaction);
+                    throw;
+                }
+            }
         }
 
         public List<ContactModel> GetContacts()

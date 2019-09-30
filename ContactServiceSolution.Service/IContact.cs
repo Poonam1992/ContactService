@@ -16,6 +16,7 @@ namespace ContactServiceSolution.Service
         Task<ContactModel> EditContact(ContactModel contact);
 
         Task<bool> DeleteContact(int  Id);
+        Task<ContactModel> UpdateContactStatus(ContactPatchStatusDTO contactStatus);
     }
 }
 

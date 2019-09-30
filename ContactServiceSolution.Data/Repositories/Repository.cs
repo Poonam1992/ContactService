@@ -82,6 +82,14 @@ namespace ContactServiceSolution.Data.Repositories
 
         }
 
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool noTracking = false)
+        {
+            if (noTracking)
+                return await context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
+
+            return await context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
         public async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null, bool noTracking = false)
         {
             if (noTracking)

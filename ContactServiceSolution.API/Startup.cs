@@ -18,7 +18,7 @@ using AutoMapper;
 using ContactServiceSolution.API.ActionFilters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ContactServiceSolution.API
 {
@@ -46,6 +46,11 @@ namespace ContactServiceSolution.API
             Mapper.Initialize(cfg => cfg.AddProfile<MappingEntities>());
 
             services.AddScoped<IContact, ContactService>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Contact Service API", Version = "Version 0.1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +67,14 @@ namespace ContactServiceSolution.API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+
+            // Serves the Swagger UI
+            app.UseSwaggerUI(c =>
+            {
+                // specifying the Swagger JSON endpoint.
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contact Service API");
+            });
         }
     }
 }

@@ -17,6 +17,7 @@ namespace ContactServiceSolution.Data.Repositories
         Task<int> SaveChanges();
         Task<bool> Remove(int id);
         Task<int> CountAsync(Expression<Func<T, bool>> predicate = null, bool noTracking = false);
+        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool noTracking = false);
         IDbContextTransaction BeginRepositoryTransaction();
         void CommitTransaction(IDbContextTransaction repositoryTransaction);
         void RollbackTransaction(IDbContextTransaction repositoryTransaction);
