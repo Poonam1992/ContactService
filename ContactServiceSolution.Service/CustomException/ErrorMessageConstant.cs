@@ -9,6 +9,5 @@ namespace ContactServiceSolution.Service.CustomException
         public const string _contactAlreadyExistsMsg= " Contact already exist in Database";
         public const string _contactNotFoundMsg = " Contact Not found";
         public const string _contactDataNotFoundMsg = " Contact data  Not found";
-
     }
 }

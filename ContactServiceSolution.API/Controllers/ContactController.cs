@@ -26,85 +26,40 @@ namespace ContactServiceSolution.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddContact([FromBody] ContactModel contact)
         {
-            try
-            {
                 var response = await _contactService.AddContact(contact);
                 return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                //FillErrorInfo(ex);
-               // LogException(ex);
-                return BadRequest(ex);
-            }
         }
 
         [Route("Update")]
         [HttpPut]
         public async Task<IActionResult> UpdateContact([FromBody]  ContactModel contact)
         {
-            try
-            {
                 var response = await _contactService.EditContact(contact);
                 return Ok(response);
-            }
-            catch (Exception ex)
-            {
-               // FillErrorInfo(ex);
-               // LogException(ex);
-                return BadRequest(ex);
-            }
         }
 
         [Route("UpdateContactStatus")]
         [HttpPatch]
         public async Task<IActionResult> UpdateContactStatus([FromBody]  ContactPatchStatusDTO contactStataus)
         {
-            try
-            {
                 var response = await _contactService.UpdateContactStatus(contactStataus);
                 return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                // FillErrorInfo(ex);
-                // LogException(ex);
-                return BadRequest(ex);
-            }
         }
 
         [Route("RemoveContact/{contactId}")]
         [HttpDelete]
         public async Task<IActionResult> RemoveContact(int contactId)
         {
-            try
-            {
                 var response = await _contactService.DeleteContact(contactId);
                 return Ok(response);
-            }
-            catch (Exception ex)
-            {
-               // FillErrorInfo(ex);
-               // LogException(ex);
-                return BadRequest(ex);
-            }
         }
 
         [Route("GetAllContacts")]
         [HttpGet]
         public  IActionResult GetAllContacts()
         {
-            try
-            {
                 var response = _contactService.GetContacts();
                 return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                // FillErrorInfo(ex);
-                // LogException(ex);
-                return BadRequest(ex);
-            }
         }
 
 

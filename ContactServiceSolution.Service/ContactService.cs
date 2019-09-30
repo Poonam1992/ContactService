@@ -30,10 +30,16 @@ namespace ContactServiceSolution.Service
                 try
                 {
                     Contact contactEntity = null;
+
                     var isContactExist = await _contactRepository.CountAsync(x => x.Id == contact.Id, true) > 0;
 
                     if (isContactExist)
                         throw new ContactAlreadyExistException(string.Format(ErrorMessageConstant._contactAlreadyExistsMsg, contact.Id));
+
+                    if(contact.Id >0)
+                    {
+
+                    }
 
                     contactEntity = _mapper.Map<ContactModel, Contact>(contact);
                     var contactAddResult = _contactRepository.Add(contactEntity);

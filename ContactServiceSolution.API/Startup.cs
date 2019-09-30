@@ -16,6 +16,7 @@ using ContactServiceSolution.Service;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using ContactServiceSolution.API.ActionFilters;
+using ContactServiceSolution.API.ExceptionMiddleware;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
@@ -64,8 +65,9 @@ namespace ContactServiceSolution.API
             {
                 app.UseHsts();
             }
-
+            app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
             app.UseHttpsRedirection();
+           
             app.UseMvc();
             app.UseSwagger();
 
