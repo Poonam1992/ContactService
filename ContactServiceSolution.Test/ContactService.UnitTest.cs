@@ -14,7 +14,6 @@ namespace ContactServiceSolution.Test
    public class ContactServiceUnitTest:BaseTest
 
     {
-
         #region  AddContact Success
         [Fact]
         public async void AddContact_Success()
@@ -27,12 +26,13 @@ namespace ContactServiceSolution.Test
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             var result = await service.AddContact(contact);
             Assert.NotNull(result);
+            Assert.IsType<ContactModel>(result);
         }
         #endregion
 
-        #region AddProduct_Failure
+        #region AddContact_Failure
         [Fact]
-        public async void AddProduct_Failure()
+        public async void AddContact_Failure()
         {
             ConfigureContactTestService();
             var service = CreateServiceInstance();
@@ -48,6 +48,151 @@ namespace ContactServiceSolution.Test
             catch (Exception ex)
             {
                 Assert.IsType<ContactAlreadyExistException>(ex);
+            }
+        }
+        #endregion
+
+        #region  Delete Contact Success
+        [Fact]
+        public async void DeleteContact_Success()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
+            contactRepositoryMock.Setup(x => x.Remove(It.IsAny<int>())).ReturnsAsync(true);
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            var result = await service.DeleteContact(1);
+            Assert.True(result);
+        }
+        #endregion
+
+        #region DeleteContact_Failure
+        [Fact]
+        public async void DeleteContact_Failure()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            var contact = new ContactModel();
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
+            contactRepositoryMock.Setup(x => x.Add(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.Remove(It.IsAny<int>())).ReturnsAsync(true);
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            try
+            {
+                var result = await service.AddContact(contact);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsType<ContactAlreadyExistException>(ex);
+            }
+        }
+        #endregion
+
+        #region   UpdateContact Success
+        [Fact]
+        public async void UpdateContact_Success()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            var contact = new ContactModel();
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            var result = await service.EditContact(contact);
+            Assert.NotNull(result);
+            Assert.IsType<ContactModel>(result);
+        }
+        #endregion
+
+        #region UpdateContact_Failure
+        [Fact]
+        public async void UpdateContact_Failure()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            var contact = new ContactModel();
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(0);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            try
+            {
+                var result = await service.EditContact(contact);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsType<ContactNotFoundException>(ex);
+            }
+        }
+        #endregion
+
+        #region   GetAllContact Success
+        [Fact]
+        public  void GetAllContact_Success()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            List<Contact> contacts = new List<Contact>()
+            {
+                new Contact{ Id=10,FirstName="Andry", LastName="John", Email="Andry@gmail.com",PhoneNumber="545454546"}
+            };
+            contactRepositoryMock.Setup(x => x.GetAll()).Returns(contacts.AsQueryable());
+            var result = service.GetContacts();
+            Assert.NotNull(result);
+            Assert.IsType<List<ContactModel>>(result);
+        }
+        #endregion
+
+        #region GetAllContact_Failure
+        [Fact]
+        public  void GetAllContact_Failure()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            contactRepositoryMock.Setup(x => x.GetAll()).Returns(new List<Contact>().AsQueryable());
+            try
+            {
+                var result =  service.GetContacts();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsType<ContactRecordsNotFound>(ex);
+            }
+        }
+        #endregion
+
+        #region   UpdateContactStatus Success
+        [Fact]
+        public async void UpdateContactStatus_Success()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            var contactStatusDto = new ContactPatchStatusDTO();
+            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(new Contact());
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            var result = await service.UpdateContactStatus(contactStatusDto);
+            Assert.NotNull(result);
+            Assert.IsType<ContactModel>(result);
+        }
+        #endregion
+
+        #region UpdateContactStatus_Failure
+        [Fact]
+        public async void UpdateContactStatus_Failure()
+        {
+            ConfigureContactTestService();
+            var service = CreateServiceInstance();
+            var contactStatusDto = new ContactPatchStatusDTO();
+            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync((Contact)null);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
+            try
+            {
+                var result = await service.UpdateContactStatus(contactStatusDto);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsType<ContactNotFoundException>(ex);
             }
         }
         #endregion

@@ -56,10 +56,15 @@ namespace ContactServiceSolution.Service
             {
                 try
                 {
-                    var cartRemoved = await _contactRepository.Remove(Id);
+                    var isContactExist = await _contactRepository.CountAsync(x => x.Id == Id, true) > 0;
+
+                    if (isContactExist == false)
+                        throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, Id));
+
+                    var contactRemoved = await _contactRepository.Remove(Id);
                     await _contactRepository.SaveChanges();
                     _contactRepository.CommitTransaction(transaction);
-                    return cartRemoved;
+                    return contactRemoved;
                 }
                 catch (Exception ex)
                 {
@@ -77,10 +82,7 @@ namespace ContactServiceSolution.Service
                 {
                     Contact contactEntity = null;
 
-                    if (contact.Id<=0)
-                        throw new ContactNotFoundException(ErrorMessageConstant._contactNotFoundMsg);
-
-                     var isContactExist= await _contactRepository.CountAsync(x=>x.Id==contact.Id,true)>0;
+                    var isContactExist= await _contactRepository.CountAsync(x=>x.Id==contact.Id,true)>0;
 
                     if (isContactExist == false)
                         throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contact.Id));
@@ -107,9 +109,6 @@ namespace ContactServiceSolution.Service
             {
                 try
                 {
-                    if (contactStatus.Id <= 0)
-                        throw new ContactNotFoundException(ErrorMessageConstant._contactNotFoundMsg);
-
                     var contactDetails = await _contactRepository.FirstOrDefaultAsync(x => x.Id == contactStatus.Id, true);
 
                     if (contactDetails == null)
