@@ -15,6 +15,7 @@ using ContactServiceSolution.Data.Repositories;
 using ContactServiceSolution.Service;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using ContactServiceSolution.API.ActionFilters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 
@@ -33,7 +34,11 @@ namespace ContactServiceSolution.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .AddMvcOptions(Options=> {
+                    Options.Filters.Add(new ModelValidator());
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ContactDatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContactDBConnection")));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
