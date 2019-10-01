@@ -8,7 +8,7 @@ namespace ContactServiceSolution.Service
     {
         public MappingEntities()
         {
-            CreateMap<Contact, Domain.ContactModel>().ReverseMap();
+            CreateMap<ContactEntity, Domain.ContactModel>().ReverseMap();
         }
     }
 }

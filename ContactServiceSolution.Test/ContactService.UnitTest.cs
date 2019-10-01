@@ -19,10 +19,10 @@ namespace ContactServiceSolution.Test
         public async void AddContact_Success()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contact = new ContactModel();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(0);
-            contactRepositoryMock.Setup(x => x.Add(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(0);
+            contactRepositoryMock.Setup(x => x.Add(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             var result = await service.AddContact(contact);
             Assert.NotNull(result);
@@ -35,11 +35,11 @@ namespace ContactServiceSolution.Test
         public async void AddContact_Failure()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contact = new ContactModel();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).
                 Throws(new ContactAlreadyExistException());
-            contactRepositoryMock.Setup(x => x.Add(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.Add(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
            
             try
             {
@@ -57,8 +57,8 @@ namespace ContactServiceSolution.Test
         public async void DeleteContact_Success()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
+            var service = GetContactService();
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(1);
             contactRepositoryMock.Setup(x => x.Remove(It.IsAny<int>())).ReturnsAsync(true);
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             var result = await service.DeleteContact(1);
@@ -71,10 +71,10 @@ namespace ContactServiceSolution.Test
         public async void DeleteContact_Failure()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contact = new ContactModel();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
-            contactRepositoryMock.Setup(x => x.Add(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(1);
+            contactRepositoryMock.Setup(x => x.Add(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.Remove(It.IsAny<int>())).ReturnsAsync(true);
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             try
@@ -93,10 +93,10 @@ namespace ContactServiceSolution.Test
         public async void UpdateContact_Success()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contact = new ContactModel();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(1);
-            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(1);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             var result = await service.EditContact(contact);
             Assert.NotNull(result);
@@ -109,10 +109,10 @@ namespace ContactServiceSolution.Test
         public async void UpdateContact_Failure()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contact = new ContactModel();
-            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(0);
-            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.CountAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(0);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             try
             {
@@ -130,10 +130,10 @@ namespace ContactServiceSolution.Test
         public  void GetAllContact_Success()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
-            List<Contact> contacts = new List<Contact>()
+            var service = GetContactService();
+            List<ContactEntity> contacts = new List<ContactEntity>()
             {
-                new Contact{ Id=10,FirstName="Andry", LastName="John", Email="Andry@gmail.com",PhoneNumber="545454546"}
+                new ContactEntity{ Id=10,FirstName="Andry", LastName="John", Email="Andry@gmail.com",PhoneNumber="545454546"}
             };
             contactRepositoryMock.Setup(x => x.GetAll()).Returns(contacts.AsQueryable());
             var result = service.GetContacts();
@@ -147,8 +147,8 @@ namespace ContactServiceSolution.Test
         public  void GetAllContact_Failure()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
-            contactRepositoryMock.Setup(x => x.GetAll()).Returns(new List<Contact>().AsQueryable());
+            var service = GetContactService();
+            contactRepositoryMock.Setup(x => x.GetAll()).Returns(new List<ContactEntity>().AsQueryable());
             try
             {
                 var result =  service.GetContacts();
@@ -165,10 +165,10 @@ namespace ContactServiceSolution.Test
         public async void UpdateContactStatus_Success()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contactStatusDto = new ContactPatchStatusDTO();
-            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync(new Contact());
-            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync(new ContactEntity());
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             var result = await service.UpdateContactStatus(contactStatusDto);
             Assert.NotNull(result);
@@ -181,10 +181,10 @@ namespace ContactServiceSolution.Test
         public async void UpdateContactStatus_Failure()
         {
             ConfigureContactTestService();
-            var service = CreateServiceInstance();
+            var service = GetContactService();
             var contactStatusDto = new ContactPatchStatusDTO();
-            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<Contact, bool>>>(), true)).ReturnsAsync((Contact)null);
-            contactRepositoryMock.Setup(x => x.Update(It.IsAny<Contact>())).Returns(new Contact());
+            contactRepositoryMock.Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<ContactEntity, bool>>>(), true)).ReturnsAsync((ContactEntity)null);
+            contactRepositoryMock.Setup(x => x.Update(It.IsAny<ContactEntity>())).Returns(new ContactEntity());
             contactRepositoryMock.Setup(x => x.SaveChanges()).ReturnsAsync(1);
             try
             {

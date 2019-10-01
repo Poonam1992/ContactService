@@ -15,7 +15,7 @@ namespace ContactServiceSolution.API.Models
         {
         }
 
-        public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<ContactEntity> Contact { get; set; }
         public virtual DbSet<Students> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,7 +29,7 @@ namespace ContactServiceSolution.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Contact>(entity =>
+            modelBuilder.Entity<ContactEntity>(entity =>
             {
                 entity.Property(e => e.Email).HasMaxLength(50);
 

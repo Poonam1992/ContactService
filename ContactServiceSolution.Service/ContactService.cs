@@ -14,22 +14,37 @@ namespace ContactServiceSolution.Service
 {
     public class ContactService : IContact
     {
-
-        private readonly IRepository<Contact> _contactRepository = null;
+        #region Private Fields
+        private readonly IRepository<ContactEntity> _contactRepository = null;
         private readonly IMapper _mapper;
-        public ContactService(IRepository<Contact> contactRepository, IMapper mapper)
+        #endregion
+
+        #region constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="contactRepository"></param>
+        /// <param name="mapper"></param>
+        public ContactService(IRepository<ContactEntity> contactRepository, IMapper mapper)
         {
             this._contactRepository = contactRepository;
             this._mapper = mapper;
         }
+        #endregion
 
+        #region Add Contact 
+        /// <summary>
+        /// Add contact
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         public async Task<ContactModel> AddContact(ContactModel contact)
         {
             using (var transaction = _contactRepository.BeginRepositoryTransaction())
             {
                 try
                 {
-                    Contact contactEntity = null;
+                    ContactEntity contactEntity = null;
 
                     var isContactExist = await _contactRepository.CountAsync(x => x.Id == contact.Id, true) > 0;
 
@@ -41,13 +56,13 @@ namespace ContactServiceSolution.Service
 
                     }
 
-                    contactEntity = _mapper.Map<ContactModel, Contact>(contact);
+                    contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
                     var contactAddResult = _contactRepository.Add(contactEntity);
 
                     await _contactRepository.SaveChanges();
                     _contactRepository.CommitTransaction(transaction);
 
-                    return _mapper.Map<Contact, ContactModel>(contactAddResult);
+                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
                 }
                 catch (Exception ex)
                 {
@@ -56,7 +71,15 @@ namespace ContactServiceSolution.Service
                 }
             }
         }
-        public  async Task<bool> DeleteContact(int Id)
+        #endregion
+
+        #region  Delete Contact
+        /// <summary>
+        /// Delete Contact
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteContact(int Id)
         {
             using (var transaction = _contactRepository.BeginRepositoryTransaction())
             {
@@ -79,26 +102,33 @@ namespace ContactServiceSolution.Service
                 }
             }
         }
+        #endregion
 
+        #region Edit Contact
+        /// <summary>
+        /// Edit Contact
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         public async Task<ContactModel> EditContact(ContactModel contact)
         {
             using (var transaction = _contactRepository.BeginRepositoryTransaction())
             {
                 try
                 {
-                    Contact contactEntity = null;
+                    ContactEntity contactEntity = null;
 
                     var isContactExist= await _contactRepository.CountAsync(x=>x.Id==contact.Id,true)>0;
 
                     if (isContactExist == false)
                         throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contact.Id));
 
-                    contactEntity = _mapper.Map<ContactModel, Contact>(contact);
+                    contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
                     var contactAddResult = _contactRepository.Update(contactEntity);
                     await _contactRepository.SaveChanges();
 
                     _contactRepository.CommitTransaction(transaction);
-                    return _mapper.Map<Contact, ContactModel>(contactAddResult);
+                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
 
                 }
                 catch (Exception ex)
@@ -126,7 +156,7 @@ namespace ContactServiceSolution.Service
                     await _contactRepository.SaveChanges();
 
                     _contactRepository.CommitTransaction(transaction);
-                    return _mapper.Map<Contact, ContactModel>(contactAddResult);
+                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
 
                 }
                 catch (Exception ex)
@@ -136,7 +166,13 @@ namespace ContactServiceSolution.Service
                 }
             }
         }
+        #endregion
 
+        #region  Get Contacts
+        /// <summary>
+        /// Get Contacts
+        /// </summary>
+        /// <returns></returns>
         public List<ContactModel> GetContacts()
         {
             try
@@ -145,7 +181,7 @@ namespace ContactServiceSolution.Service
 
                 if (contactList != null && contactList.Any())
                 {
-                    var result = _mapper.Map<List<Contact>, List<ContactModel>>(contactList.ToList());
+                    var result = _mapper.Map<List<ContactEntity>, List<ContactModel>>(contactList.ToList());
                     return result;
                 }
 
@@ -157,6 +193,7 @@ namespace ContactServiceSolution.Service
             }
 
         }
+        #endregion
 
     }
 }

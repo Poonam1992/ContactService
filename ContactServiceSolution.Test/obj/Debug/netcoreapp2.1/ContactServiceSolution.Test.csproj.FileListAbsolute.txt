@@ -17,3 +17,5 @@ C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\Co
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Test\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Test\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Test\obj\Debug\netcoreapp2.1\ContactServiceSolution.Test.csproj.CopyComplete
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Test\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.dll
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Test\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.pdb

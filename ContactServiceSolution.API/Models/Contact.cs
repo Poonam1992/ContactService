@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ContactServiceSolution.API.Models
 {
-    public partial class Contact
+    public partial class ContactEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
