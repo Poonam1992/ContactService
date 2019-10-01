@@ -1,4 +1,4 @@
-# Contact Service -ASP.NET Core REST Web API that uses SQL/JSON functionalities
+# Contact Service -ASP.NET Core REST Web API 
 
 This project contains an implementation of ASP.NET Core REST API with CRUD operations on a Contact table.
 
