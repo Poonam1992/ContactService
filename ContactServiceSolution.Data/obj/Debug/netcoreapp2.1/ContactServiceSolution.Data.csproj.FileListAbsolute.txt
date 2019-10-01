@@ -8,3 +8,4 @@ C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\Co
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Data\obj\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Data\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.runtimeconfig.json
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Data\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.runtimeconfig.dev.json
+C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Data\obj\Debug\netcoreapp2.1\ContactServiceSolution.Data.csprojAssemblyReference.cache
