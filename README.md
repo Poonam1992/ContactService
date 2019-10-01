@@ -7,7 +7,7 @@ This project contains an implementation of ASP.NET Core REST API with CRUD opera
 - **Applies to:** SQL Server 2013 (or higher)
 - **Tool:** Visual Studio 2017
 - **Programming Language:** C#
-- **Authors:** Poonam Suryawanshi
+- **Author:** Poonam Suryawanshi
 
 <a name=before-you-begin></a>
 
