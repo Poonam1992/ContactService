@@ -36,7 +36,6 @@ namespace ContactServiceSolution.API.ExceptionMiddleware
             var code = HttpStatusCode.InternalServerError; 
             if (ex is ContactNotFoundException) code = HttpStatusCode.NotFound;
            
-
             var result = JsonConvert.SerializeObject(new { error = ex.Message });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;

@@ -40,31 +40,19 @@ namespace ContactServiceSolution.Service
         /// <returns></returns>
         public async Task<ContactModel> AddContact(ContactModel contact)
         {
-            using (var transaction = _contactRepository.BeginRepositoryTransaction())
-            {
-                try
-                {
-                    ContactEntity contactEntity = null;
+            ContactEntity contactEntity = null;
+            var isContactExist = await _contactRepository.CountAsync(x => x.Id == contact.Id, true) > 0;
 
-                    var isContactExist = await _contactRepository.CountAsync(x => x.Id == contact.Id, true) > 0;
+            if (isContactExist)
+                throw new ContactAlreadyExistException(string.Format(ErrorMessageConstant._contactAlreadyExistsMsg, contact.Id));
 
-                    if (isContactExist)
-                        throw new ContactAlreadyExistException(string.Format(ErrorMessageConstant._contactAlreadyExistsMsg, contact.Id));
+            contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
+            var contactAddResult = _contactRepository.Add(contactEntity);
 
-                    contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
-                    var contactAddResult = _contactRepository.Add(contactEntity);
+            await _contactRepository.SaveChanges();
 
-                    await _contactRepository.SaveChanges();
-                    _contactRepository.CommitTransaction(transaction);
+            return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
 
-                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
-                }
-                catch (Exception ex)
-                {
-                    _contactRepository.RollbackTransaction(transaction);
-                    throw ;
-                }
-            }
         }
         #endregion
 
@@ -76,26 +64,14 @@ namespace ContactServiceSolution.Service
         /// <returns></returns>
         public async Task<bool> DeleteContact(int Id)
         {
-            using (var transaction = _contactRepository.BeginRepositoryTransaction())
-            {
-                try
-                {
-                    var isContactExist = await _contactRepository.CountAsync(x => x.Id == Id, true) > 0;
+            var isContactExist = await _contactRepository.CountAsync(x => x.Id == Id, true) > 0;
 
-                    if (isContactExist == false)
-                        throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, Id));
+            if (isContactExist == false)
+                throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, Id));
 
-                    var contactRemoved = await _contactRepository.Remove(Id);
-                    await _contactRepository.SaveChanges();
-                    _contactRepository.CommitTransaction(transaction);
-                    return contactRemoved;
-                }
-                catch (Exception ex)
-                {
-                    _contactRepository.RollbackTransaction(transaction);
-                    throw;
-                }
-            }
+            var contactRemoved = await _contactRepository.Remove(Id);
+            await _contactRepository.SaveChanges();
+            return contactRemoved;
         }
         #endregion
 
@@ -107,59 +83,31 @@ namespace ContactServiceSolution.Service
         /// <returns></returns>
         public async Task<ContactModel> EditContact(ContactModel contact)
         {
-            using (var transaction = _contactRepository.BeginRepositoryTransaction())
-            {
-                try
-                {
-                    ContactEntity contactEntity = null;
+            ContactEntity contactEntity = null;
+            var isContactExist = await _contactRepository.CountAsync(x => x.Id == contact.Id, true) > 0;
 
-                    var isContactExist= await _contactRepository.CountAsync(x=>x.Id==contact.Id,true)>0;
+            if (isContactExist == false)
+                throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contact.Id));
 
-                    if (isContactExist == false)
-                        throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contact.Id));
+            contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
+            var contactAddResult = _contactRepository.Update(contactEntity);
+            await _contactRepository.SaveChanges();
 
-                    contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
-                    var contactAddResult = _contactRepository.Update(contactEntity);
-                    await _contactRepository.SaveChanges();
-
-                    _contactRepository.CommitTransaction(transaction);
-                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
-
-                }
-                catch (Exception ex)
-                {
-                    _contactRepository.RollbackTransaction(transaction);
-                    throw ;
-                }
-            }
+            return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
         }
 
-        public async  Task<ContactModel> UpdateContactStatus(ContactPatchStatusDTO contactStatus)
+        public async Task<ContactModel> UpdateContactStatus(ContactPatchStatusDTO contactStatus)
         {
-            using (var transaction = _contactRepository.BeginRepositoryTransaction())
-            {
-                try
-                {
-                    var contactDetails = await _contactRepository.FirstOrDefaultAsync(x => x.Id == contactStatus.Id, true);
+            var contactDetails = await _contactRepository.FirstOrDefaultAsync(x => x.Id == contactStatus.Id, true);
+            if (contactDetails == null)
+                throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contactStatus.Id));
 
-                    if (contactDetails == null)
-                        throw new ContactNotFoundException(string.Format(ErrorMessageConstant._contactNotFoundMsg, contactStatus.Id));
+            contactDetails.Status = contactStatus.Status;
 
-                    contactDetails.Status = contactStatus.Status;
-                    
-                    var contactAddResult = _contactRepository.Update(contactDetails);
-                    await _contactRepository.SaveChanges();
+            var contactAddResult = _contactRepository.Update(contactDetails);
+            await _contactRepository.SaveChanges();
 
-                    _contactRepository.CommitTransaction(transaction);
-                    return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
-
-                }
-                catch (Exception ex)
-                {
-                    _contactRepository.RollbackTransaction(transaction);
-                    throw;
-                }
-            }
+            return _mapper.Map<ContactEntity, ContactModel>(contactAddResult);
         }
         #endregion
 
@@ -170,15 +118,15 @@ namespace ContactServiceSolution.Service
         /// <returns></returns>
         public List<ContactModel> GetContacts()
         {
-                var contactList = _contactRepository.GetAll();
+            var contactList = _contactRepository.GetAll();
 
-                if (contactList != null && contactList.Any())
-                {
-                    var result = _mapper.Map<List<ContactEntity>, List<ContactModel>>(contactList.ToList());
-                    return result;
-                }
+            if (contactList != null && contactList.Any())
+            {
+                var result = _mapper.Map<List<ContactEntity>, List<ContactModel>>(contactList.ToList());
+                return result;
+            }
 
-                throw new ContactRecordsNotFound(string.Format(ErrorMessageConstant._contactDataNotFoundMsg));
+            throw new ContactRecordsNotFound(string.Format(ErrorMessageConstant._contactDataNotFoundMsg));
         }
         #endregion
 
