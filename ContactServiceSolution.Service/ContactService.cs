@@ -170,8 +170,6 @@ namespace ContactServiceSolution.Service
         /// <returns></returns>
         public List<ContactModel> GetContacts()
         {
-            try
-            {
                 var contactList = _contactRepository.GetAll();
 
                 if (contactList != null && contactList.Any())
@@ -181,12 +179,6 @@ namespace ContactServiceSolution.Service
                 }
 
                 throw new ContactRecordsNotFound(string.Format(ErrorMessageConstant._contactDataNotFoundMsg));
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
-
         }
         #endregion
 
