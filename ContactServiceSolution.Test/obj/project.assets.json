@@ -8140,11 +8140,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Test\\ContactServiceSolution.Test.csproj",
+      "projectUniqueName": "D:\\ContactService\\ContactServiceSolution.Test\\ContactServiceSolution.Test.csproj",
       "projectName": "ContactServiceSolution.Test",
-      "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Test\\ContactServiceSolution.Test.csproj",
+      "projectPath": "D:\\ContactService\\ContactServiceSolution.Test\\ContactServiceSolution.Test.csproj",
       "packagesPath": "C:\\Users\\poonamsu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Test\\obj\\",
+      "outputPath": "D:\\ContactService\\ContactServiceSolution.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8163,14 +8163,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj": {
-              "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj"
+            "D:\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj": {
+              "projectPath": "D:\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj"
             },
-            "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Data\\ContactServiceSolution.Data.csproj": {
-              "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Data\\ContactServiceSolution.Data.csproj"
+            "D:\\ContactService\\ContactServiceSolution.Data\\ContactServiceSolution.Data.csproj": {
+              "projectPath": "D:\\ContactService\\ContactServiceSolution.Data\\ContactServiceSolution.Data.csproj"
             },
-            "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj": {
-              "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj"
+            "D:\\ContactService\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj": {
+              "projectPath": "D:\\ContactService\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj"
             }
           }
         }

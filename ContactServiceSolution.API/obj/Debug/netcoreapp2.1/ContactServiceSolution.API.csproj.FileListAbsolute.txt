@@ -17,3 +17,22 @@ C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\Co
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.csproj.CopyComplete
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.deps.json
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.runtimeconfig.json
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.runtimeconfig.dev.json
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.dll
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.API.pdb
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.dll
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
+D:\ContactService\ContactServiceSolution.API\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.csprojAssemblyReference.cache
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.csproj.CoreCompileInputs.cache
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.RazorAssemblyInfo.cache
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.RazorAssemblyInfo.cs
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.AssemblyInfoInputs.cache
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.AssemblyInfo.cs
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.RazorTargetAssemblyInfo.cache
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.csproj.CopyComplete
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.dll
+D:\ContactService\ContactServiceSolution.API\obj\Debug\netcoreapp2.1\ContactServiceSolution.API.pdb

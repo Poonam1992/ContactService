@@ -10,3 +10,15 @@ C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\Co
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.dll
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
 C:\Users\poonamsu\Desktop\ps sunday\ContactService\ContactServiceSolution.API\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csproj.CopyComplete
+D:\ContactService\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.deps.json
+D:\ContactService\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
+D:\ContactService\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb
+D:\ContactService\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.dll
+D:\ContactService\ContactServiceSolution.Service\bin\Debug\netcoreapp2.1\ContactServiceSolution.Data.pdb
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csprojAssemblyReference.cache
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csproj.CoreCompileInputs.cache
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.AssemblyInfoInputs.cache
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.AssemblyInfo.cs
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.csproj.CopyComplete
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.dll
+D:\ContactService\ContactServiceSolution.Service\obj\Debug\netcoreapp2.1\ContactServiceSolution.Service.pdb

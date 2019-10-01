@@ -11732,11 +11732,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj",
+      "projectUniqueName": "D:\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj",
       "projectName": "ContactServiceSolution.API",
-      "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj",
+      "projectPath": "D:\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API.csproj",
       "packagesPath": "C:\\Users\\poonamsu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.API\\obj\\",
+      "outputPath": "D:\\ContactService\\ContactServiceSolution.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11755,8 +11755,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj": {
-              "projectPath": "C:\\Users\\poonamsu\\Desktop\\ps sunday\\ContactService\\ContactServiceSolution.API\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj"
+            "D:\\ContactService\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj": {
+              "projectPath": "D:\\ContactService\\ContactServiceSolution.Service\\ContactServiceSolution.Service.csproj"
             }
           }
         }

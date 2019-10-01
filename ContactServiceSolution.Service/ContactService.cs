@@ -51,11 +51,6 @@ namespace ContactServiceSolution.Service
                     if (isContactExist)
                         throw new ContactAlreadyExistException(string.Format(ErrorMessageConstant._contactAlreadyExistsMsg, contact.Id));
 
-                    if(contact.Id >0)
-                    {
-
-                    }
-
                     contactEntity = _mapper.Map<ContactModel, ContactEntity>(contact);
                     var contactAddResult = _contactRepository.Add(contactEntity);
 
